@@ -23,19 +23,19 @@ var yAxis = d3.svg.axis()
 .tickFormat(formatData);
 
 
-var svg = d3.select("body").append("svg")
+var svg3 = d3.select("body").append("svg")
 .attr("width", width + margin.left + margin.right)
 .attr("height", height + margin.top + margin.bottom)
 .append("g")
 .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-d3.json("json/indiaHectares.json",function(error, data) {
+d3.json("../json/indiaHectares.json",function(error, data) {
 if (error) throw error;
 
 x.domain(data.map(function(d) { return d.YEAR; }));
 y.domain([150000000, d3.max(data, function(d) { return d.VALUE; })]);
 
-svg.append("g")
+svg3.append("g")
   .attr("class", "x axis")
   .attr("transform", "translate(0," + height + ")")
   .call(xAxis)
@@ -45,7 +45,7 @@ svg.append("g")
   .attr("dy","-0.6em")
   .style("text-anchor","end");
 
-svg.append("g")
+svg3.append("g")
   .attr("class", "y axis")
   .call(yAxis)
 .append("text")
@@ -55,7 +55,7 @@ svg.append("g")
   .style("text-anchor", "end")
   .text("Hectares in Millions");
 
-svg.selectAll(".bar")
+svg3.selectAll(".bar")
   .data(data)
 .enter().append("rect")
   .attr("class", "bar")

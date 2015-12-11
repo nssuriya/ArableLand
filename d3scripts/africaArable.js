@@ -17,19 +17,19 @@ var yAxis = d3.svg.axis()
 .orient("left");
 
 
-var svg = d3.select("body").append("svg")
+var svg4 = d3.select("body").append("svg")
 .attr("width", width + margin.left + margin.right)
 .attr("height", height + margin.top + margin.bottom)
 .append("g")
 .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-d3.json("json/africaArable.json",function(error, data) {
+d3.json("../json/africaArable.json",function(error, data) {
 if (error) throw error;
 
 x.domain(data.map(function(d) { return d.COUNTRYNAME; }));
 y.domain([0, d3.max(data, function(d) { return d.ARABLE; })]);
 
-svg.append("g")
+svg4.append("g")
   .attr("class", "x axis")
   .attr("transform", "translate(0," + height + ")")
   .call(xAxis)
@@ -39,7 +39,7 @@ svg.append("g")
   .attr("dy","-0.6em")
   .style("text-anchor","end");
 
-svg.append("g")
+svg4.append("g")
   .attr("class", "y axis")
   .call(yAxis)
 .append("text")
@@ -49,7 +49,7 @@ svg.append("g")
   .style("text-anchor", "end")
   .text("Arable % of Land Area");
 
-svg.selectAll(".bar")
+svg4.selectAll(".bar")
   .data(data)
 .enter().append("rect")
   .attr("class", "bar")
