@@ -20,7 +20,6 @@ var continents =JSON.parse(string);
 
 //Creating global Variables and arrays
 var heading = new Array();
-var a=0;
 var indiaArable = new Array();
 var indiaHectaresPP = new Array();
 var indHectares = new Array();
@@ -87,55 +86,19 @@ rl.on('line', function(line) {
 
           if(currentLine[0]=="India"){
 
-            var objOuter=new Object();
-            for(i=4;i<currentLine.length;i++){
-              var obj=new Object();
-              obj["YEAR"]=heading[i];
-              obj["VALUE"]= parseFloat(currentLine[i]);
-              indHectares.push(obj);
-            if(!isNaN(parseFloat(currentLine[i])))
-            aggregate.ASIA[i-4]=aggregate.ASIA[i-4]+parseFloat(currentLine[i]);
-            //console.log(aggregate.ASIA[i-4]+"  "+parseFloat(currentLine[i]));
-            }
-
-
-          }
-
-          else if(continents[currentLine[0]]==="ASIA"){
-
-            for(i=4;i<currentLine.length;i++)
+              var objOuter=new Object();
+              for(i=4;i<currentLine.length;i++){
+                  var obj=new Object();
+                  obj["YEAR"]=heading[i];
+                  obj["VALUE"]= parseFloat(currentLine[i]);
+                  indHectares.push(obj);
               if(!isNaN(parseFloat(currentLine[i])))
-              aggregate.ASIA[i-4]=aggregate.ASIA[i-4]+parseFloat(currentLine[i]);
-            }
-
-          else if(continents[currentLine[0]]==="AFRICA"){
-            for(i=4;i<currentLine.length;i++)
-            if(!isNaN(parseFloat(currentLine[i])))
-            aggregate.AFRICA[i-4]=aggregate.AFRICA[i-4]+parseFloat(currentLine[i]);
-            }
-          else if(continents[currentLine[0]]==="EUROPE"){
-            for(i=4;i<currentLine.length;i++)
-            if(!isNaN(parseFloat(currentLine[i])))
-            aggregate.EUROPE[i-4]=aggregate.EUROPE[i-4]+parseFloat(currentLine[i]);
+                  aggregate[continents[currentLine[0]]][i-4]=aggregate[continents[currentLine[0]]][i-4]+parseFloat(currentLine[i]);
+              }
           }
-          else if(continents[currentLine[0]]==="N_AMERICA"){
-            for(i=4;i<currentLine.length;i++)
-            if(!isNaN(parseFloat(currentLine[i])))
-            aggregate.N_AMERICA[i-4]=aggregate.N_AMERICA[i-4]+parseFloat(currentLine[i]);
-          }
-          else if(continents[currentLine[0]]==="S_AMERICA"){
-            for(i=4;i<currentLine.length;i++)
-            if(!isNaN(parseFloat(currentLine[i])))
-            aggregate.S_AMERICA[i-4]=aggregate.S_AMERICA[i-4]+parseFloat(currentLine[i]);
-          }
-          else if(continents[currentLine[0]]==="OCEANIA"){
-            for(i=4;i<currentLine.length;i++)
-            if(!isNaN(parseFloat(currentLine[i])))
-            aggregate.OCEANIA[i-4]=aggregate.OCEANIA[i-4]+parseFloat(currentLine[i]);
-          }
-
-
-
+          for(i=4;i<currentLine.length;i++)
+              if(!isNaN(parseFloat(currentLine[i])) && continents[currentLine[0]] != undefined)
+              aggregate[continents[currentLine[0]]][i-4]=aggregate[continents[currentLine[0]]][i-4]+parseFloat(currentLine[i]);
     }
 
 
