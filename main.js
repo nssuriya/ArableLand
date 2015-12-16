@@ -96,9 +96,11 @@ rl.on('line', function(line) {
                   aggregate[continents[currentLine[0]]][i-4]=aggregate[continents[currentLine[0]]][i-4]+parseFloat(currentLine[i]);
               }
           }
+          else if(continents[currentLine[0]] != undefined){
           for(i=4;i<currentLine.length;i++)
-              if(!isNaN(parseFloat(currentLine[i])) && continents[currentLine[0]] != undefined)
+              if(!isNaN(parseFloat(currentLine[i])))
               aggregate[continents[currentLine[0]]][i-4]=aggregate[continents[currentLine[0]]][i-4]+parseFloat(currentLine[i]);
+          }
     }
 
 
